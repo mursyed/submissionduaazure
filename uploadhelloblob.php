@@ -143,6 +143,7 @@ function delete(){
                 $error_message = $e->getMessage();
                 echo $code.": ".$error_message."<br />";
             }
+}
 ?>
 
 <form method="post" action="uploadhelloblob.php?containerName=<?php echo $containerName; ?>">
