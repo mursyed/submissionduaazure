@@ -41,15 +41,13 @@ use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 if($_POST){
     if(isset($_POST['insert'])){
         add();
-    }elseif(isset($_POST['delete'])){
-        add();
+    }elseif(isset($_POST['ganteng'])){
+        ganteng();
     }
 }
 
 // fungsi add bloob
 function add() {
-        
-        echo "gua ganteng";
         
 //         $connectionString = "DefaultEndpointsProtocol=https;AccountName=submissionduaas;AccountKey=WhZpfgFLncmxa2VxfGkzQYFVilRBpCaRLTYcgPparkTtxv0ipOqXFfUNkZD8M4kqAJBuJlQbym96eYHA2ciVgA==";
 //         //$connectionString = "DefaultEndpointsProtocol=https;AccountName=".getenv('submissionduaas').";AccountKey=".getenv('WhZpfgFLncmxa2VxfGkzQYFVilRBpCaRLTYcgPparkTtxv0ipOqXFfUNkZD8M4kqAJBuJlQbym96eYHA2ciVgA==');
@@ -95,45 +93,45 @@ function add() {
 //                 echo $fileToUpload;
 //                 echo "<br />";
 
-//                 $content = fopen($fileToUpload, "r");
-//                 //Upload blob
-//                 $blobClient->createBlockBlob($containerName, $fileToUpload, $content);
-//                 // List blobs.
-//                 $listBlobsOptions = new ListBlobsOptions();
-//                 $listBlobsOptions->setPrefix("HelloWorld");
-//                 echo "These are the blobs present in the container: ";
-//                 do{
-//                     $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
-//                     foreach ($result->getBlobs() as $blob)
-//                     {
-//                         echo $blob->getName().": ".$blob->getUrl()."<br />";
-//                     }
+                $content = fopen($fileToUpload, "r");
+                //Upload blob
+                $blobClient->createBlockBlob($containerName, $fileToUpload, $content);
+                // List blobs.
+                $listBlobsOptions = new ListBlobsOptions();
+                $listBlobsOptions->setPrefix("HelloWorld");
+                echo "These are the blobs present in the container: ";
+                do{
+                    $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
+                    foreach ($result->getBlobs() as $blob)
+                    {
+                        echo $blob->getName().": ".$blob->getUrl()."<br />";
+                    }
 
-//                     $listBlobsOptions->setContinuationToken($result->getContinuationToken());
-//                 } while($result->getContinuationToken());
-//                 echo "<br />";
-//                 // Get blob.
-//                 echo "This is the content of the blob uploaded: ";
-//                 $blob = $blobClient->getBlob($containerName, $fileToUpload);
-//                 fpassthru($blob->getContentStream());
-//                 echo "<br />";
-//             }
-//             catch(ServiceException $e){
-//                 // Handle exception based on error codes and messages.
-//                 // Error codes and messages are here:
-//                 // http://msdn.microsoft.com/library/azure/dd179439.aspx
-//                 $code = $e->getCode();
-//                 $error_message = $e->getMessage();
-//                 echo $code.": ".$error_message."<br />";
-//             }
-//             catch(InvalidArgumentTypeException $e){
-//                 // Handle exception based on error codes and messages.
-//                 // Error codes and messages are here:
-//                 // http://msdn.microsoft.com/library/azure/dd179439.aspx
-//                 $code = $e->getCode();
-//                 $error_message = $e->getMessage();
-//                 echo $code.": ".$error_message."<br />";
-//             }
+                    $listBlobsOptions->setContinuationToken($result->getContinuationToken());
+                } while($result->getContinuationToken());
+                echo "<br />";
+                // Get blob.
+                echo "This is the content of the blob uploaded: ";
+                $blob = $blobClient->getBlob($containerName, $fileToUpload);
+                fpassthru($blob->getContentStream());
+                echo "<br />";
+            }
+            catch(ServiceException $e){
+                // Handle exception based on error codes and messages.
+                // Error codes and messages are here:
+                // http://msdn.microsoft.com/library/azure/dd179439.aspx
+                $code = $e->getCode();
+                $error_message = $e->getMessage();
+                echo $code.": ".$error_message."<br />";
+            }
+            catch(InvalidArgumentTypeException $e){
+                // Handle exception based on error codes and messages.
+                // Error codes and messages are here:
+                // http://msdn.microsoft.com/library/azure/dd179439.aspx
+                $code = $e->getCode();
+                $error_message = $e->getMessage();
+                echo $code.": ".$error_message."<br />";
+            }
         
 } 
 
@@ -154,6 +152,10 @@ function delete(){
                 echo $code.": ".$error_message."<br />";
             }
 }
+
+function ganteng(){
+    echo "gua ganteng";
+}
 ?>
 
 <!DOCTYPE html>
@@ -164,7 +166,8 @@ function delete(){
                 <p>submission 2 add image bloob cuy.</p>
 
                 <form method="post" action="uploadhelloblob.php">
-                    <input type="submit" class="button" name="insert" value="Test Kegantengan"/>
+                    <input type="submit" class="button" name="ganteng" value="Test Kegantengan"/>
+                    <input type="submit" class="button" name="insert" value="Simpan Bloob"/>
                 </form>
 
         </body>
