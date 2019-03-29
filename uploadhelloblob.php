@@ -46,6 +46,7 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
 
 // fungsi add bloob
 function add() {
+        
         $fileToUpload = "bagicode.png";
 
             // Create container options object.
@@ -144,8 +145,7 @@ function delete(){
             }
 ?>
 
-
-<form method="post" action="phpQS.php?Insert&containerName=<?php echo $containerName; ?>"
+<form method="post" action="uploadhelloblob.php?containerName=<?php echo $containerName; ?>">
     <input type="submit" name="Add" value="insert" onclick="add()" />
     <input type="submit" name="Delete" value="select" onclick="delete()" />
 </form>
