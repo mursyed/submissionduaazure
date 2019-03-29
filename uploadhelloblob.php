@@ -165,8 +165,6 @@ function delete(){
 
                 <form method="post" action="uploadhelloblob.php">
                     <input type="submit" class="button" name="Test Echo" value="insert"/>
-                    <input type="submit" name="Add" value="insert" onclick="add()" />
-                    <input type="submit" name="Delete" value="select" onclick="delete()" />
                 </form>
 
         </body>
