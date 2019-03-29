@@ -91,6 +91,7 @@ function add() {
                 # Upload file as a block blob
                 echo "Uploading BlockBlob: ".PHP_EOL;
                 echo $fileToUpload;
+                echo " Success";
                 echo "<br />";
 
                 $content = fopen($fileToUpload, "r");
@@ -99,7 +100,9 @@ function add() {
                 // List blobs.
                 $listBlobsOptions = new ListBlobsOptions();
                 $listBlobsOptions->setPrefix("HelloWorld");
-                echo "These are the blobs present in the container: ";
+                
+                //echo "These are the blobs present in the container: ";
+                
                 do{
                     $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
                     foreach ($result->getBlobs() as $blob)
@@ -110,10 +113,12 @@ function add() {
                     $listBlobsOptions->setContinuationToken($result->getContinuationToken());
                 } while($result->getContinuationToken());
                 echo "<br />";
+                
                 // Get blob.
                 // echo "This is the content of the blob uploaded: ";
                 // $blob = $blobClient->getBlob($containerName, $fileToUpload);
                 // fpassthru($blob->getContentStream());
+                
                 echo "<br />";
             }
             catch(ServiceException $e){
