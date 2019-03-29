@@ -45,7 +45,7 @@ $connectionString = "DefaultEndpointsProtocol=https;AccountName=submissionduaas;
 $blobClient = BlobRestProxy::createBlobService($connectionString);
 $fileToUpload = "bagicode.png";
 
-if (!isset($_GET["Cleanup"])) {
+if (isset($_GET["Insert"])) {
     // Create container options object.
     $createContainerOptions = new CreateContainerOptions();
     // Set public access policy. Possible values are
@@ -142,6 +142,10 @@ else
 }
 ?>
 
+
+<form method="post" action="phpQS.php?Insert&containerName=<?php echo $containerName; ?>">
+    <button type="submit">Simpan Bloob</button>
+</form>
 
 <form method="post" action="phpQS.php?Cleanup&containerName=<?php echo $containerName; ?>">
     <button type="submit">Hapus data yang telah diupload</button>
