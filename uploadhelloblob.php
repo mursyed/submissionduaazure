@@ -146,8 +146,18 @@ function delete(){
 }
 ?>
 
-<form method="post" action="uploadhelloblob.php">
-    <input type="submit" name="Add" value="insert" onclick="add()" />
-    <input type="submit" name="Delete" value="select" onclick="delete()" />
-</form>
+<!DOCTYPE html>
+<html>
+        <body>
+
+                <h1>Tugas Dicoding</h1>
+                <p>submission 2 add image bloob.</p>
+
+                <form method="post" action="uploadhelloblob.php">
+                    <input type="submit" name="Add" value="insert" onclick="add()" />
+                    <input type="submit" name="Delete" value="select" onclick="delete()" />
+                </form>
+
+        </body>
+</html> 
 
