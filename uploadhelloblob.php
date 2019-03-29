@@ -111,9 +111,9 @@ function add() {
                 } while($result->getContinuationToken());
                 echo "<br />";
                 // Get blob.
-                echo "This is the content of the blob uploaded: ";
-                $blob = $blobClient->getBlob($containerName, $fileToUpload);
-                fpassthru($blob->getContentStream());
+                // echo "This is the content of the blob uploaded: ";
+                // $blob = $blobClient->getBlob($containerName, $fileToUpload);
+                // fpassthru($blob->getContentStream());
                 echo "<br />";
             }
             catch(ServiceException $e){
