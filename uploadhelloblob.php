@@ -38,6 +38,14 @@ use MicrosoftAzure\Storage\Blob\Models\ListBlobsOptions;
 use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
 use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 
+if($_POST){
+    if(isset($_POST['insert'])){
+        add();
+    }elseif(isset($_POST['delete'])){
+        add();
+    }
+}
+
 // fungsi add bloob
 function add() {
         
@@ -156,6 +164,7 @@ function delete(){
                 <p>submission 2 add image bloob cuy.</p>
 
                 <form method="post" action="uploadhelloblob.php">
+                    <input type="submit" class="button" name="Test Echo" value="insert"/>
                     <input type="submit" name="Add" value="insert" onclick="add()" />
                     <input type="submit" name="Delete" value="select" onclick="delete()" />
                 </form>
