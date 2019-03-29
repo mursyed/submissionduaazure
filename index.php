@@ -138,5 +138,5 @@ else
 
 
 <form method="post" action="phpQS.php?Cleanup&containerName=<?php echo $containerName; ?>">
-    <button type="submit">Press to clean up all resources created by this sample</button>
+    <button type="submit">Hapus data yang telah diupload</button>
 </form>
