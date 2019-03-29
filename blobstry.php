@@ -41,7 +41,9 @@ use MicrosoftAzure\Storage\Common\Models\Logging;
 use MicrosoftAzure\Storage\Common\Models\Metrics;
 use MicrosoftAzure\Storage\Common\Models\RetentionPolicy;
 use MicrosoftAzure\Storage\Common\Models\ServiceProperties;
-$connectionString = 'DefaultEndpointsProtocol=https;AccountName=<yourAccount>;AccountKey=<yourKey>';
+
+$connectionString = "DefaultEndpointsProtocol=https;AccountName=submissionduaas;AccountKey=WhZpfgFLncmxa2VxfGkzQYFVilRBpCaRLTYcgPparkTtxv0ipOqXFfUNkZD8M4kqAJBuJlQbym96eYHA2ciVgA==";
+
 $blobClient = BlobRestProxy::createBlobService($connectionString);
 // A temporary container created and used through this sample, and finnaly deleted
 $myContainer = 'mycontainer' . generateRandomString();
