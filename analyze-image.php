@@ -10,7 +10,7 @@ $ocpApimSubscriptionKey = '7ab506eafd0949c0bbdc386f5e90dc10';
 // You must use the same location in your REST call as you used to obtain
 // your subscription keys. For example, if you obtained your subscription keys
 // from westus, replace "westcentralus" in the URL below with "westus".
-$uriBase = 'https://westcentralus.api.cognitive.microsoft.com/vision/v2.0/';
+$uriBase = 'https://southeastasia.api.cognitive.microsoft.com/vision/v2.0/';
 
 $imageUrl = 'https://upload.wikimedia.org/wikipedia/commons/3/3c/Shaki_waterfall.jpg';
 
