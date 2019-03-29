@@ -38,7 +38,10 @@ use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
 use MicrosoftAzure\Storage\Blob\Models\ListBlobsOptions;
 use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
 use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
-$connectionString = "DefaultEndpointsProtocol=https;AccountName=submissionduaas;AccountKey=WhZpfgFLncmxa2VxfGkzQYFVilRBpCaRLTYcgPparkTtxv0ipOqXFfUNkZD8M4kqAJBuJlQbym96eYHA2ciVgA==";
+
+$connectionString = "DefaultEndpointsProtocol=https;AccountName=submissionrobbydua;AccountKey=V1yy/b98tVaiEf+1A6MMTth0HdobrA269PoAzQD87q6jfLghOvON7gAMP+ZKs75xj7WRBd1igHUvLjek1hb0Ew==";
+        
+//$connectionString = "DefaultEndpointsProtocol=https;AccountName=submissionduaas;AccountKey=WhZpfgFLncmxa2VxfGkzQYFVilRBpCaRLTYcgPparkTtxv0ipOqXFfUNkZD8M4kqAJBuJlQbym96eYHA2ciVgA==";
 //$connectionString = "DefaultEndpointsProtocol=https;AccountName=".getenv('submissionduaas').";AccountKey=".getenv('WhZpfgFLncmxa2VxfGkzQYFVilRBpCaRLTYcgPparkTtxv0ipOqXFfUNkZD8M4kqAJBuJlQbym96eYHA2ciVgA==');
 // Create blob client.
 $blobClient = BlobRestProxy::createBlobService($connectionString);
