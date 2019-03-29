@@ -41,89 +41,91 @@ use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 // fungsi add bloob
 function add() {
         
-        $connectionString = "DefaultEndpointsProtocol=https;AccountName=submissionduaas;AccountKey=WhZpfgFLncmxa2VxfGkzQYFVilRBpCaRLTYcgPparkTtxv0ipOqXFfUNkZD8M4kqAJBuJlQbym96eYHA2ciVgA==";
-        //$connectionString = "DefaultEndpointsProtocol=https;AccountName=".getenv('submissionduaas').";AccountKey=".getenv('WhZpfgFLncmxa2VxfGkzQYFVilRBpCaRLTYcgPparkTtxv0ipOqXFfUNkZD8M4kqAJBuJlQbym96eYHA2ciVgA==');
-
-        // Create blob client.
-        $blobClient = BlobRestProxy::createBlobService($connectionString);
+        echo "gua ganteng";
         
-        $fileToUpload = "bagicode.png";
+//         $connectionString = "DefaultEndpointsProtocol=https;AccountName=submissionduaas;AccountKey=WhZpfgFLncmxa2VxfGkzQYFVilRBpCaRLTYcgPparkTtxv0ipOqXFfUNkZD8M4kqAJBuJlQbym96eYHA2ciVgA==";
+//         //$connectionString = "DefaultEndpointsProtocol=https;AccountName=".getenv('submissionduaas').";AccountKey=".getenv('WhZpfgFLncmxa2VxfGkzQYFVilRBpCaRLTYcgPparkTtxv0ipOqXFfUNkZD8M4kqAJBuJlQbym96eYHA2ciVgA==');
 
-            // Create container options object.
-            $createContainerOptions = new CreateContainerOptions();
-            // Set public access policy. Possible values are
-            // PublicAccessType::CONTAINER_AND_BLOBS and PublicAccessType::BLOBS_ONLY.
-            // CONTAINER_AND_BLOBS:
-            // Specifies full public read access for container and blob data.
-            // proxys can enumerate blobs within the container via anonymous
-            // request, but cannot enumerate containers within the storage account.
-            //
-            // BLOBS_ONLY:
-            // Specifies public read access for blobs. Blob data within this
-            // container can be read via anonymous request, but container data is not
-            // available. proxys cannot enumerate blobs within the container via
-            // anonymous request.
-            // If this value is not specified in the request, container data is
-            // private to the account owner.
-            $createContainerOptions->setPublicAccess(PublicAccessType::CONTAINER_AND_BLOBS);
-            // Set container metadata.
-            $createContainerOptions->addMetaData("key1", "value1");
-            $createContainerOptions->addMetaData("key2", "value2");
-              $containerName = "blockblobs".generateRandomString();
-            try {
-                // Create container.
-                $blobClient->createContainer($containerName, $createContainerOptions);
-                // Getting local file so that we can upload it to Azure
-                // $myfile = fopen($fileToUpload, "w") or die("Unable to open file!");
-                // $myfile = fopen($fileToUpload, "r") or die("Unable to open file!");
-                $myfile = fopen($fileToUpload, "a") or die("Unable to open file!");
+//         // Create blob client.
+//         $blobClient = BlobRestProxy::createBlobService($connectionString);
+        
+//         $fileToUpload = "bagicode.png";
 
-                fclose($myfile);
+//             // Create container options object.
+//             $createContainerOptions = new CreateContainerOptions();
+//             // Set public access policy. Possible values are
+//             // PublicAccessType::CONTAINER_AND_BLOBS and PublicAccessType::BLOBS_ONLY.
+//             // CONTAINER_AND_BLOBS:
+//             // Specifies full public read access for container and blob data.
+//             // proxys can enumerate blobs within the container via anonymous
+//             // request, but cannot enumerate containers within the storage account.
+//             //
+//             // BLOBS_ONLY:
+//             // Specifies public read access for blobs. Blob data within this
+//             // container can be read via anonymous request, but container data is not
+//             // available. proxys cannot enumerate blobs within the container via
+//             // anonymous request.
+//             // If this value is not specified in the request, container data is
+//             // private to the account owner.
+//             $createContainerOptions->setPublicAccess(PublicAccessType::CONTAINER_AND_BLOBS);
+//             // Set container metadata.
+//             $createContainerOptions->addMetaData("key1", "value1");
+//             $createContainerOptions->addMetaData("key2", "value2");
+//               $containerName = "blockblobs".generateRandomString();
+//             try {
+//                 // Create container.
+//                 $blobClient->createContainer($containerName, $createContainerOptions);
+//                 // Getting local file so that we can upload it to Azure
+//                 // $myfile = fopen($fileToUpload, "w") or die("Unable to open file!");
+//                 // $myfile = fopen($fileToUpload, "r") or die("Unable to open file!");
+//                 $myfile = fopen($fileToUpload, "a") or die("Unable to open file!");
 
-                # Upload file as a block blob
-                echo "Uploading BlockBlob: ".PHP_EOL;
-                echo $fileToUpload;
-                echo "<br />";
+//                 fclose($myfile);
 
-                $content = fopen($fileToUpload, "r");
-                //Upload blob
-                $blobClient->createBlockBlob($containerName, $fileToUpload, $content);
-                // List blobs.
-                $listBlobsOptions = new ListBlobsOptions();
-                $listBlobsOptions->setPrefix("HelloWorld");
-                echo "These are the blobs present in the container: ";
-                do{
-                    $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
-                    foreach ($result->getBlobs() as $blob)
-                    {
-                        echo $blob->getName().": ".$blob->getUrl()."<br />";
-                    }
+//                 # Upload file as a block blob
+//                 echo "Uploading BlockBlob: ".PHP_EOL;
+//                 echo $fileToUpload;
+//                 echo "<br />";
 
-                    $listBlobsOptions->setContinuationToken($result->getContinuationToken());
-                } while($result->getContinuationToken());
-                echo "<br />";
-                // Get blob.
-                echo "This is the content of the blob uploaded: ";
-                $blob = $blobClient->getBlob($containerName, $fileToUpload);
-                fpassthru($blob->getContentStream());
-                echo "<br />";
-            }
-            catch(ServiceException $e){
-                // Handle exception based on error codes and messages.
-                // Error codes and messages are here:
-                // http://msdn.microsoft.com/library/azure/dd179439.aspx
-                $code = $e->getCode();
-                $error_message = $e->getMessage();
-                echo $code.": ".$error_message."<br />";
-            }
-            catch(InvalidArgumentTypeException $e){
-                // Handle exception based on error codes and messages.
-                // Error codes and messages are here:
-                // http://msdn.microsoft.com/library/azure/dd179439.aspx
-                $code = $e->getCode();
-                $error_message = $e->getMessage();
-                echo $code.": ".$error_message."<br />";
-            }
+//                 $content = fopen($fileToUpload, "r");
+//                 //Upload blob
+//                 $blobClient->createBlockBlob($containerName, $fileToUpload, $content);
+//                 // List blobs.
+//                 $listBlobsOptions = new ListBlobsOptions();
+//                 $listBlobsOptions->setPrefix("HelloWorld");
+//                 echo "These are the blobs present in the container: ";
+//                 do{
+//                     $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
+//                     foreach ($result->getBlobs() as $blob)
+//                     {
+//                         echo $blob->getName().": ".$blob->getUrl()."<br />";
+//                     }
+
+//                     $listBlobsOptions->setContinuationToken($result->getContinuationToken());
+//                 } while($result->getContinuationToken());
+//                 echo "<br />";
+//                 // Get blob.
+//                 echo "This is the content of the blob uploaded: ";
+//                 $blob = $blobClient->getBlob($containerName, $fileToUpload);
+//                 fpassthru($blob->getContentStream());
+//                 echo "<br />";
+//             }
+//             catch(ServiceException $e){
+//                 // Handle exception based on error codes and messages.
+//                 // Error codes and messages are here:
+//                 // http://msdn.microsoft.com/library/azure/dd179439.aspx
+//                 $code = $e->getCode();
+//                 $error_message = $e->getMessage();
+//                 echo $code.": ".$error_message."<br />";
+//             }
+//             catch(InvalidArgumentTypeException $e){
+//                 // Handle exception based on error codes and messages.
+//                 // Error codes and messages are here:
+//                 // http://msdn.microsoft.com/library/azure/dd179439.aspx
+//                 $code = $e->getCode();
+//                 $error_message = $e->getMessage();
+//                 echo $code.": ".$error_message."<br />";
+//             }
         
 } 
 
@@ -151,7 +153,7 @@ function delete(){
         <body>
 
                 <h1>Tugas Dicoding</h1>
-                <p>submission 2 add image bloob.</p>
+                <p>submission 2 add image bloob cuy.</p>
 
                 <form method="post" action="uploadhelloblob.php">
                     <input type="submit" name="Add" value="insert" onclick="add()" />
