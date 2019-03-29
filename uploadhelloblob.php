@@ -164,7 +164,7 @@ function delete(){
                 <p>submission 2 add image bloob cuy.</p>
 
                 <form method="post" action="uploadhelloblob.php">
-                    <input type="submit" class="button" name="Test Echo" value="insert"/>
+                    <input type="submit" class="button" name="insert" value="Test Kegantengan"/>
                 </form>
 
         </body>
