@@ -171,7 +171,6 @@ function ganteng(){
                 <p>submission 2 add image bloob cuy.</p>
 
                 <form method="post" action="uploadhelloblob.php">
-                    <input type="submit" class="button" name="ganteng" value="Test Kegantengan"/>
                     <input type="submit" class="button" name="insert" value="Simpan Bloob"/>
                 </form>
 
