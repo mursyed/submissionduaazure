@@ -1,6 +1,6 @@
 <?php
 
-    <link rel="icon" href="bagicode.png">
+    <link rel="shortcut icon" href="bagicode.png" />
     echo "sedang di deploy";
 
 ?>
